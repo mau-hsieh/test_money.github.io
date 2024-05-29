@@ -103,7 +103,6 @@ const questions = [
 
 ];
 
-// 在頁面載入時隨機挑選5個題目
 document.addEventListener("DOMContentLoaded", function() {
     const form = document.getElementById("quiz-form");
     const questionSection = document.getElementById("question-section");
@@ -116,12 +115,25 @@ document.addEventListener("DOMContentLoaded", function() {
         questionElement.innerHTML = `
             <h2>第${index + 1}題：${question.question}</h2>
             <ul>
-                ${question.options.map(option => `
-                    <li><label><input type="radio" name="q${index + 1}" value="${option}"> ${option}</label></li>
+                ${question.options.map((option, optIndex) => `
+                    <li><label><input type="radio" name="q${index + 1}" value="${String.fromCharCode(65 + optIndex)}"> ${option}</label></li>
                 `).join('')}
             </ul>
         `;
         questionSection.appendChild(questionElement);
+        
+        // 隱藏字段保存問題和答案
+        const hiddenQuestion = document.createElement("input");
+        hiddenQuestion.type = "hidden";
+        hiddenQuestion.name = `question${index + 1}`;
+        hiddenQuestion.value = question.question;
+        form.appendChild(hiddenQuestion);
+
+        const hiddenAnswer = document.createElement("input");
+        hiddenAnswer.type = "hidden";
+        hiddenAnswer.name = `answer${index + 1}`;
+        hiddenAnswer.value = question.answer;
+        form.appendChild(hiddenAnswer);
     });
 });
 
