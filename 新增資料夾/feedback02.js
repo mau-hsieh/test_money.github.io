@@ -1,8 +1,9 @@
+
+var total_score;
 document.addEventListener("DOMContentLoaded", function() {
     const feedbackSection = document.getElementById("feedback-section");
     const urlParams = new URLSearchParams(window.location.search);
     const userAnswers = [];
-    const questions = [];
 
     for (let i = 1; i <= 5; i++) {
         const userAnswer = urlParams.get(`q${i}`);
@@ -30,6 +31,11 @@ document.addEventListener("DOMContentLoaded", function() {
         `;
     });
 
-    feedbackHTML += `<h2>您的總分是：${score}</h2>`;
+    feedbackHTML += `<h2 id="total-score">您的總分是：${score}</h2>`;
     feedbackSection.innerHTML = feedbackHTML;
+
+    // 抓取 id="total-score" 的元素並儲存到全域變數
+    
+    window.total_score = document.getElementById("total-score");
 });
+
