@@ -1,4 +1,4 @@
-let score = 0;  // 全局变量，用來保存總分
+let new_score = 0;  // 全局变量，用來保存總分
 const incorrectAnswers = [];  // 用來記錄答錯的問題
 
 // 題目數據
@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function() {
         const { userAnswer, question, options, answer, id } = item;
         const correct = answer === userAnswer;
         if (correct) {
-            score += 20;  // 每答對一題加 20 分
+            new_score += 20;  // 每答對一題加 20 分
         } else {
             // 記錄答錯的問題，並包括問題的 ID
             incorrectAnswers.push({
@@ -177,7 +177,7 @@ document.addEventListener("DOMContentLoaded", function() {
         `;
     });
 
-    feedbackHTML += `<h2>您的總分是：<span id="userScore">${score}</span></h2>`;
+    feedbackHTML += `<h2>您的總分是：<span id="userScore">${new_score}</span></h2>`;
     feedbackSection.innerHTML = feedbackHTML;
     
 
