@@ -177,8 +177,9 @@ document.addEventListener("DOMContentLoaded", function() {
         `;
     });
 
-    feedbackHTML += `<h2>您的總分是：${score}</h2>`;
+    feedbackHTML += `<h2>您的總分是：<span id="userScore">${score}</span></h2>`;
     feedbackSection.innerHTML = feedbackHTML;
+    
 
     // 顯示答錯的問題詳情
     if (incorrectAnswers.length > 0) {
@@ -187,7 +188,7 @@ document.addEventListener("DOMContentLoaded", function() {
             feedbackHTML += `
                 <section>
                     <h3>題目 ID: ${item.id} - ${item.question}</h3>
-                    <ul>
+                    <ul style="list-style-type:upper-alpha;">
                         ${item.options.map(option => `<li>${option}</li>`).join('')}
                     </ul>
                     <p>您的回答：${item.yourAnswer}</p>
